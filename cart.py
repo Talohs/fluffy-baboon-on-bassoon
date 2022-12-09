@@ -24,11 +24,20 @@ def user_resp():
 
 def user_attr():
     hold_cart = {}
-    c_choice = user_resp
+    c_choice = user_resp()
     while c_choice != 'quit':
         if c_choice == 'add':
-            shopping_cart[input('Please add a food')] : hold_cart
+            new_item = input('Please add a food?')
+            shopping_cart.update({new_item : new_item})
+            item_count = input (f"How many {new_item} would you like?")
+            shopping_cart[f'number of {new_item}']: item_count
             c_choice = input("What would you like to do in the store today?")
-    return hold_cart
+    print(shopping_cart)
+    return shopping_cart
+    
 print(user_resp())
-print(user_attr())
+
+
+for key, val in user_attr().items():
+    pass
+print(shopping_cart)
