@@ -1,3 +1,4 @@
+
 import json
 
 def shop():
@@ -36,3 +37,4 @@ def shop():
                 break
 
 shop()
+
