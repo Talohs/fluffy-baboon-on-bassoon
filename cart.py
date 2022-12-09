@@ -1,43 +1,38 @@
-# 1) Takes in an input
-# 2) Stores user input into a dictionary or list
-# 3) The User can add or delete items
-# 4) The User can see current shopping list
-# 5) The program Loops until user 'quits'
-# 6) Upon quiting the program, prints out a receipt of the items with total and quantity.
+import json
 
-# Have a function that takes in user input and returns what that function does
-# Have a function that processes those requests 
-    #if statements to process the shopping cart responses
-# Have a print statement at the end that prints their reicept in a formatted way
+def shop():
+    cart = []
+    valid_selections = ['a', 'r', 's', 'c']
+    while True:
+        selection = input('What would you like to do? \'a\' to add, \'r\' to remove, \'s\' to show, and \'c\' to checkout.')
+        if selection not in valid_selections:
+            print(f'Your selection \'{selection}\' is not a valid option.\nValid options are \'a\' to add, \'r\' to remove, \'s\' to show, and \'c\' to checkout.')
+        else:
+            if selection.lower() == 'a':
+                item_to_add = input('What would you like to add to your shopping cart?').lower()
+                cart.append(item_to_add)
+            elif selection.lower() == 'r':
+                item_to_remove = input(f'What would you like to remove? Your cart currently contains: {cart}').lower()
+                confirm = input(f'Are you sure you want to remove {item_to_remove.title()} from your cart? \'y\' to confirm, any other key to cancel.')
+                if confirm == 'y':
+                    cart.remove(item_to_remove)
+            elif selection.lower() == 's':
+                print('Here are the current contents of your cart:')
+                for i in cart:
+                    print(i)
+            else:
+                output_dict = {}
+                item_number = 1
+                print('Thanks for shopping with us!')
+                print('Here are the final contents of your cart.')
+                for i in cart:
+                    print(i)
+                    output_dict[item_number] = i
+                    item_number += 1
+                print(f'Printing your receipt as receipt.json: {output_dict}')
 
-shopping_cart = {}
-u_choice = input("What would you like to do in the store today?")
-def user_resp():
-    user_choices = {
-        'add': 'add',
-        'delete': 'delete',
-        'clear': 'clear',
-        'show': 'test3',
-        'quit': 'quit'
-        }
-    return user_choices.get(u_choice)
+                with open('receipt.json', 'w') as fp:
+                    json.dump(output_dict, fp, indent=4)
+                break
 
-def user_attr():
-    hold_cart = {}
-    c_choice = user_resp()
-    while c_choice != 'quit':
-        if c_choice == 'add':
-            new_item = input('Please add a food?')
-            shopping_cart.update({new_item : new_item})
-            item_count = input (f"How many {new_item} would you like?")
-            shopping_cart[f'number of {new_item}']: item_count
-            c_choice = input("What would you like to do in the store today?")
-    print(shopping_cart)
-    return shopping_cart
-    
-print(user_resp())
-
-
-for key, val in user_attr().items():
-    pass
-print(shopping_cart)
+shop()
