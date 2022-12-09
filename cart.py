@@ -30,14 +30,23 @@ def user_attr():
             new_item = input('Please add a food?')
             shopping_cart.update({new_item : new_item})
             item_count = input (f"How many {new_item} would you like?")
-            shopping_cart[f'number of {new_item}']: item_count
+            shopping_cart.update({f'number of {new_item}': item_count})
+            cost_numeric = 0.0
+            for cost_item in new_item:
+                cost_numeric += ord(cost_item) * 0.010
+            cost_numeric*float(shopping_cart.get(f'number of {new_item}'))
+            cost_total = str("%.2f" % cost_numeric)
+            shopping_cart.update({f'{new_item} price': cost_total})
             c_choice = input("What would you like to do in the store today?")
-    print(shopping_cart)
+            
     return shopping_cart
     
 print(user_resp())
 
 
-for key, val in user_attr().items():
-    pass
+# for ct,val in enumerate(user_attr().values()):
+#     print("Your reciept\n", f"{val[ct+1]} {val} for ${val}\n")
+#     if ct%4 == 0:
+#         print('\n')
+#     pass
 print(shopping_cart)
