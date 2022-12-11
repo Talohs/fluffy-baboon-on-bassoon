@@ -1,3 +1,4 @@
+
 # 1) Takes in an input
 # 2) Stores user input into a dictionary or list
 # 3) The User can add or delete items
@@ -89,6 +90,4 @@ def user_attr():
 user_attr()
 print("Your Reciept")
 print_out()
-
-
 
